@@ -1,0 +1,109 @@
+
+
+Total number of whole mouth images
+625
+
+Total number of good Image Quality whole mouth images
+577
+
+Total number of fair Image Quality whole mouth images
+24
+
+Total number of poor Image Quality whole mouth images
+4
+
+Total number of ND Image Quality whole mouth images
+20
+
+Total number of OSCC Impression whole mouth images
+36
+
+Total number of precancer Impression whole mouth images
+180
+
+Total number of Benige Impression whole mouth images
+24
+
+Total number of Normal Impression whole mouth images
+338
+
+Total number of ND Impression whole mouth images
+26
+
+Total number of Other Impression whole mouth images
+21
+
+Total number of af loss and pre/OSCC whole mouth images
+32
+
+Total number of loss af whole mouth images
+40
+
+Total number of gain af whole mouth images
+125
+
+Total number of normal af whole mouth images
+404
+
+Total number of ND af whole mouth images
+56
+
+
+
+
+Total number of probe images
+388
+
+Total number of good Image Quality probe images
+140
+
+Total number of fair Image Quality probe images
+119
+
+Total number of poor Image Quality probe images
+44
+
+Total number of ND Image Quality probe images
+85
+
+Total number of OSCC Impression probe images
+18
+
+Total number of precancer Impression probe images
+117
+
+Total number of Benige Impression probe images
+19
+
+Total number of Normal Impression probe images
+106
+
+Total number of ND Impression probe images
+115
+
+Total number of Other Impression probe images
+13
+
+Total number of af loss and pre/OSCC probe images
+18
+
+Total number of af gain and pre/OSCC probe images
+70
+
+Total number of af normal and pre/OSCC probe images
+38
+
+Total number of af ND and pre/OSCC probe images
+9
+
+Total number of loss af probe images
+25
+
+Total number of gain af probe images
+93
+
+Total number of normal af probe images
+157
+
+Total number of ND af probe images
+113

@@ -1,0 +1,49 @@
+<html>
+<head>
+  <title>Home</title>
+<style>
+a.one:link {color:#ff0000;}
+a.one:visited {color:#0000ff;}
+a.one:hover {color:#ffcc00;}
+
+a.two:link {color:#ff0000;}
+a.two:visited {color:#0000ff;}
+a.two:hover {font-size:150%;}
+
+a.three:link {color:#ff0000;}
+a.three:visited {color:#0000ff;}
+a.three:hover {background:#66ff66;}
+
+a.four:link {color:#ff0000;}
+a.four:visited {color:#0000ff;}
+a.four:hover {font-family:monospace;}
+
+a.five:link {color:#ff0000;text-decoration:none;}
+a.five:visited {color:#0000ff;text-decoration:none;}
+a.five:hover {text-decoration:underline;}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <h1 style="font-style:italic">Home</h1>
+<p>Welcome, please note you can not delete data or change your diagnosis after submit.</p>
+<p>Please contact administator if you need.</p>
+  <p><b><a class="two" href="{{ url_for('signin') }}">View Data</a></b></p>
+    
+  <form action="/ViewMap" method="post">
+  <button type="submit" class="btn btn-default">View on Map</button>
+ </form>
+ 
+    <a href="/contact">
+   <i class="fa fa-cloud" style="font-size:24px;color:plum"></i>
+    </a>
+    <a href="{{ url_for('signin') }}">
+   <i class="fa fa-cloud" style="font-size:36px;color:salmon"></i>
+    </a>
+    <a href="/contact1">
+   <i class="fa fa-cloud" style="font-size:48px;color:red;"></i>
+    </a>
+   <i class="fa fa-cloud" style="font-size:60px;color:lightblue;"></i>
+</body>
+</html>

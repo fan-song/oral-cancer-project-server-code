@@ -1,0 +1,37 @@
+<html>
+<head>
+<style>
+  #map {
+        height: 800px;
+        width: 100%;
+       }
+</style>
+</head>
+<body>
+    
+     <div id="map"></div>
+ <script>
+      function initMap() {
+        var latCoordi = {{ latCoordi|tojson }};
+        var lngCoordi = {{ lngCoordi|tojson }};
+        var location = {lat: 30, lng: -160};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 3,
+          center: new google.maps.LatLng(36,160),
+            mapTypeId: 'terrain'
+        });
+         for ( i = 0; i < latCoordi.length; i++){    
+            var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(latCoordi[i],lngCoordi[i]),
+            map: map
+            });
+         }
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0BiAzQL5j5xtZU5XBYawigpX4g32ctFg&callback=initMap">
+ </script>
+
+
+</body>
+</html>

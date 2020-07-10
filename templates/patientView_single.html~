@@ -1,0 +1,213 @@
+<html>
+<head>
+  <title>Patient ID: {{patientId}}</title>
+<style>
+div.backlinks{
+	position:absolute;
+	top:10px;
+	right:10px;
+}
+div.BasicInfo{
+	position:absolute;
+	top:600px;
+	left:10px;
+}
+div.ForRef{
+	position:absolute;
+	top:600px;
+	left:300px;	
+}
+div.DoctorC{
+	position:absolute;
+	top:1360px;
+	left:10px;
+}
+  #map {
+	position:absolute;
+        height: 260px;
+        width: 260px;
+	top:800px;
+	right:60px;
+	border:3px solid;
+       }
+div.gallery {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 300px;
+}
+
+div.gallery:hover {
+    border: 1px solid #777;
+}
+
+div.gallery img {
+    width: 100%;
+    height: 38%;
+}
+
+div.desc {
+    padding: 30px;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+
+  <h1 style="font-style:italic">Patient ID: {{patientId}}</h1>
+
+<div class="backlinks">    
+<ul class="a" style= "color:red" id = "demo"></ul>
+</div>
+
+<div class="gallery">
+  <a target="_blank" href={{jpgPath[0]}}>
+    <img src={{jpgPath[0]}} alt="" width="600" height="400">
+  </a>
+  <div class="desc">Fig 1.  {{jpgName[0]}}</div>
+</div>
+
+<div class="gallery">
+  <a target="_blank" href={{jpgPath[1]}}>
+    <img src={{jpgPath[1]}} alt="" width="600" height="400">
+  </a>
+  <div class="desc">Fig 2.  {{jpgName[1]}}</div>
+</div>
+  
+
+
+<!--  <img src={{jpgPath[0]}} width= "300" height="300" />
+
+  <p>Figure 1, Original Photo.</p>
+  <img src={{jpgPath[1]}} width= "300" height="300" />
+
+  <p>Figure 3, Suspicious area circled.</p>
+//-->
+    
+  <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
+
+<div class="BasicInfo">
+  <p  style="font-size:20px;font-style:italic"><strong>Patient Basic Info:</strong></p>
+
+  <p><strong>Patient ID:</strong></p>
+  <p>{{patientId}}</p>
+  <p><strong>Patient Name:</strong></p>
+  <p>{{patientName}}</p>
+  <p><strong>Risk Factor:</strong></p>
+  <p>{{patientHeight}}</p>
+  <p><strong>History:</strong></p>
+  <p>{{patientWeight}}</p>
+  <p><strong>Patient Gender:</strong></p>
+  <p>{{patientGender}}</p>
+  <p><strong>Patient Age:</strong></p>
+  <p>{{patientAge}}</p>
+  <p><strong>Patient Phone:</strong></p>
+  <p>{{patientPhone}}</p>
+  <p><strong>Patient Location:</strong></p>
+  <p>{{patientLocation}}</p>
+  <p><strong>GPS City Name:</strong></p>
+  <p>{{gpsLocation}}</p>
+
+</div>
+<div class="ForRef">
+  <p style="font-size:20px;font-style:italic"><strong>For reference:</strong></p>
+  <p><font color="red">Do not make diagnosis entirely basid on this result.</front></p>
+  <pre><font color="black">{{ contentresult }}</front></pre>
+</div>
+<div class="DoctorC">
+  <p style="font-size:20px;font-style:italic"><strong>Doctor Comments:</strong></p>
+  <pre>{{ contentcomment }}</pre>
+  
+ <form action="/doctor_comment_submitted" method="post">
+  
+  <!--   <textarea name="comment" cols="50" rows="5"></textarea>   -->
+<p>-----------------------------------------</p>
+
+<textarea name = "patientId" style = "width:0px;height:0px;" readonly>{{patientId}}</textarea>
+<textarea name = "time_string" style = "width:0px;height:0px;" readonly>{{time_string}}</textarea>
+
+<p><font color="red">If the selection of "quality of Image" is "Not appreciate/Not Diagnostic",</p>
+<p><font color="red">Other options will also set to "Not appreciate/Not Diagnostic" at backend,</p>
+<p><font color="red">No matter what you select.</p>
+  <p><font color="black">Quality of Image:</p>
+ 
+  <select name = "qualityImage">
+     <option value ="good">good</option>
+     <option value ="fair">fair</option>
+     <option value ="poor">poor</option>
+     <option value ="Not appreciate/Not Diagnostic">Not appreciate/Not Diagnostic</option>
+  </select>
+<p> </p>
+  <p>Impression:</p>
+  <select name = "impression">
+     <option value ="Normal/Variation">Normal/variation</option>
+     <option value ="OSCC">OSCC</option>
+     <option value ="Lichen Planus">Lichen Planus</option>
+     <option value ="Homogenous Leukoplakia">Homogenous Leukoplakia</option>
+     <option value ="Speckled Leukoplakia">Speckled Leukoplakia</option>
+     <option value ="Tobacco Pouch Keratosis">Tobacco Pouch Keratosis</option>
+     <option value ="Veruccous Leukoplakia">Veruccous Leukoplakia</option>
+     <option value ="OSMF">OSMF</option>
+     <option value ="Benign">Benign</option>
+     <option value ="Not appreciate/Not Diagnostic">Not appreciate/Not Diagnostic</option>
+     <option value ="Others" >Others</option>
+  </select>
+<p> </p>
+  <p>Autofluorescence:</p>
+  <select name = "autofl">
+     <option value ="normal">normal</option>
+     <option value ="loss">loss</option>
+     <option value ="gain">gain</option>
+     <option value ="Not appreciate/Not Diagnostic">Not appreciate/Not Diagnostic</option>
+  </select>
+<p> </p>
+  <p>OSCC/PreCancer Lesions:</p>
+  <select name = "cancerORnot">
+     <option value ="yes">yes</option>
+     <option value ="no">no</option>
+     <option value ="Not appreciate/Not Diagnostic">Not appreciate/Not Diagnostic</option>
+  </select>
+<p> </p>
+  <p>Biopsy advised:</p>
+  <select name = "biopsyORnot">
+     <option value ="yes">yes</option>
+     <option value ="no">no</option>
+     <option value ="Not appreciate/Not Diagnostic">Not appreciate/Not Diagnostic</option>
+  </select>
+<p> </p>
+<textarea name="comment" cols="50" rows="5"></textarea> 
+  <button type="submit" class="btn btn-default">Submit</button>
+ </form>
+</div>
+  <div id="map"></div>
+ <script>
+      function initMap() {
+        var latCoordi = {{ latCoordi|tojson }};
+        var lngCoordi = {{ lngCoordi|tojson }};
+        var location = {lat: 32, lng: -110};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10,
+          center: new google.maps.LatLng(latCoordi,lngCoordi),
+            mapTypeId: 'hybrid',
+        });
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(latCoordi,lngCoordi),
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0BiAzQL5j5xtZU5XBYawigpX4g32ctFg&callback=initMap">
+ </script>
+<script>
+    var a = {{ patientId|tojson }};
+   
+	//text = ""
+	text = '<a style="font-size:30px" href="/list_patient1/'+ a + '">' +'List of Instances:  '+ a + '</a><br>'
+text += '<a style="font-size:30px" href="/list_patient_back"> List of Patients</a><br>';
+text += '<a style="font-size:30px" href="https://log:out@35.197.15.177/"> Log Out</a><br>'
+    
+    document.getElementById("demo").innerHTML = text;
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<html>
+<head>
+  <title>Patient ID: az001</title>
+</head>
+<body>
+
+  {% if message %}
+  <p style="color:red">{{ message }}</p>
+  {% endif %}
+
+  <h1 style="font-style:italic">Patient ID: az001</h1>
+  <img src='/static/patientInfo/az001/1.JPG' width= "300" height="300" /> 
+  <img src='/static/patientInfo/az001/2.jpg' width= "300" height="300" />
+  <pre>{{ content }}</pre>
+  
+ <form action="/az001" method="post">
+  <textarea name="comment" cols="50" rows="5"></textarea>
+  <button type="submit" class="btn btn-default">Submit</button>
+ </form>
+  
+
+</body>
+</html>

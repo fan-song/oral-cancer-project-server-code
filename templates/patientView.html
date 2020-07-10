@@ -1,0 +1,518 @@
+<html>
+<head>
+  <title>Patient ID: {{patientId}}</title>
+<style>
+img {
+	width:16%;
+	height:auto;
+	float:left;
+}
+.adjust1{-webkit-filter:brightness(200%) contrast(100%);filter:brightness(200%) contrast(100%);}
+.adjust2{-webkit-filter:brightness(300%) contrast(100%);filter:brightness(200%) contrast(100%);}
+.adjust3{-webkit-filter:brightness(400%) contrast(100%);filter:brightness(400%) contrast(100%);}
+.adjust4{-webkit-filter:brightness(500%) contrast(100%);filter:brightness(500%) contrast(100%);}
+.adjust5{-webkit-filter:brightness(600%) contrast(100%);filter:brightness(600%) contrast(100%);}
+.adjust6{-webkit-filter:brightness(700%) contrast(100%);filter:brightness(700%) contrast(100%);}
+	
+.adjust01{-webkit-filter:brightness(100%) contrast(100%);filter:brightness(100%) contrast(100%);}
+.adjust02{-webkit-filter:brightness(160%) contrast(130%);filter:brightness(160%) contrast(130%);}
+.adjust03{-webkit-filter:brightness(200%) contrast(160%);filter:brightness(200%) contrast(160%);}
+.adjust04{-webkit-filter:brightness(300%) contrast(200%);filter:brightness(300%) contrast(200%);}
+.adjust05{-webkit-filter:brightness(400%) contrast(200%);filter:brightness(400%) contrast(200%);}
+.adjust06{-webkit-filter:brightness(500%) contrast(200%);filter:brightness(500%) contrast(200%);}
+
+div.backlinks{
+	position:absolute;
+	top:10px;
+	right:10px;
+}
+div.BasicInfo{
+	position:absolute;
+	top:600px;
+	left:10px;
+}
+div.ForRef{
+	position:absolute;
+	top:600px;
+	left:300px;	
+}
+div.DoctorC{
+	position:absolute;
+	top:1360px;
+	left:10px;
+}
+  #map {
+	position:absolute;
+        height: 260px;
+        width: 260px;
+	top:800px;
+	right:60px;
+	border:3px solid;
+       }
+
+div.gallery {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 300px;
+}
+
+div.gallery:hover {
+    border: 1px solid #777;
+}
+
+div.gallery img {
+    width: 100%;
+    height: 38%;
+}
+
+div.desc {
+    padding: 30px;
+    text-align: center;
+}
+
+/*for lightbox*/
+body {
+  font-family: Verdana, sans-serif;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.row > .column {
+  padding: 0 8px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.column {
+  float: left;
+  width: 18%;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: black;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  width: 90%;
+  max-width: 600px;
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #999;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mySlides {
+  display: none;
+}
+
+.cursor {
+  cursor: pointer
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -30px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.prev{
+	left:0;
+	border-radius: 3px 0 0 3px;
+}
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+img {
+  margin-bottom: -4px;
+}
+
+.caption-container {
+  text-align: center;
+  background-color: black;
+  padding: 2px 16px;
+  color: white;
+}
+
+.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+}
+
+img.hover-shadow {
+  transition: 0.3s
+}
+
+.hover-shadow:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+}
+</style>
+</head>
+<body>
+
+  <h1 style="font-style:italic">Patient ID: {{patientId}}</h1>
+<p></p><br>
+<p></p><br>
+<p></p><br>
+<div class="backlinks">    
+
+<ul class="a" style= "color:red" id = "demo"></ul>
+</div>
+<!-- gallery before lightbox   
+<div class="gallery">
+  <a target="_blank" href={{jpgPath[0]}}>
+    <img src={{jpgPath[0]}} alt="" width="600" height="400">
+  </a>
+  <div class="desc">Fig 1.  {{jpgName[0]}}</div>
+</div>
+
+<div class="gallery">
+  <a target="_blank" href={{jpgPath[1]}}>
+    <img src={{jpgPath[1]}} alt="" width="600" height="400">
+  </a>
+  <div class="desc">Fig 2.  {{jpgName[1]}}</div>
+</div>
+
+<div class="gallery">
+  <a target="_blank" href={{jpgPath[2]}}>
+    <img src={{jpgPath[2]}} alt="" width="600" height="400">
+  </a>
+  <div class="desc">Fig 3.  {{jpgName[2]}}</div>
+</div>
+
+<div class="gallery">
+  <a target="_blank" href={{jpgPath[3]}}>
+    <img src={{jpgPath[3]}} alt="" width="600" height="400">
+  </a>
+  <div class="desc">Fig 4.  {{jpgName[3]}}</div>
+</div>
+//-->
+<!-- for lightbox   //-->
+<div class="row">
+  <div class="column">
+    <img src={{jpgPath[0]}} style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src={{jpgPath[1]}} style="width:100%" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src={{jpgPath[2]}} style="width:100%" onclick="openModal();currentSlide(3)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src={{jpgPath[3]}} style="width:100%" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
+  </div>
+</div>
+
+<div id="myModal" class="modal">
+  <span class="close cursor" onclick="closeModal()">&times;</span>
+  <div class="modal-content">
+
+    <div class="mySlides">
+      <div class="numbertext">1 / 4</div>
+      <img src={{jpgPath[0]}} style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">2 / 4</div>
+      <img src={{jpgPath[1]}} style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">3 / 4</div>
+      <img src={{jpgPath[2]}} style="width:100%">
+    </div>
+    
+    <div class="mySlides">
+      <div class="numbertext">4 / 4</div>
+      <img src={{jpgPath[3]}} style="width:100%">
+    </div>
+    
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+    <div class="caption-container">
+      <p id="caption"></p>
+    </div>
+
+
+    <div class="column">
+      <img class="demo cursor" src={{jpgPath[0]}} style="width:100%" onclick="currentSlide(1)" alt={{jpgName[0]}}>
+    </div>
+    <div class="column">
+      <img class="demo cursor" src={{jpgPath[1]}} style="width:100%" onclick="currentSlide(2)" alt={{jpgName[1]}}>
+    </div>
+    <div class="column">
+      <img class="demo cursor" src={{jpgPath[2]}} style="width:100%" onclick="currentSlide(3)" alt={{jpgName[2]}}>
+    </div>
+    <div class="column">
+      <img class="demo cursor" src={{jpgPath[3]}} style="width:100%" onclick="currentSlide(4)" alt={{jpgName[3]}}>
+    </div>
+  </div>
+</div>
+ <!-- 
+  <img src={{jpgPath[0]}} width= "300" height="300" />
+
+  <img src={{jpgPath[1]}} width= "300" height="300" />
+  <p>Figure 1, {{jpgName[0]}}. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Figure 2, {{jpgName[1]}}.</p>
+  <img src={{jpgPath[2]}} width= "300" height="300" />
+
+  <img src={{jpgPath[3]}} width= "300" height="300" /> 
+  <p>Figure 3, {{jpgName[2]}}.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Figure 4, {{jpgName[3]}}.</p>  
+
+<p><br /><br /><br /></p>
+<p>Fluoresence Image</p>
+<img class='adjust1' src={{jpgPath[0]}} width="100" height="100">
+<img class='adjust2' src={{jpgPath[0]}} width="100" height="100">
+<img class='adjust3' src={{jpgPath[0]}} width="100" height="100">
+<img class='adjust4' src={{jpgPath[0]}} width="100" height="100">
+<img class='adjust5' src={{jpgPath[0]}} width="100" height="100">
+<img class='adjust6' src={{jpgPath[0]}} width="100" height="100">
+<p><br /><br /><br /></p>
+<p><br/>             White Light Image</p>
+<img class='adjust01' src={{jpgPath[2]}} width="100" height="100">
+<img class='adjust02' src={{jpgPath[2]}} width="100" height="100">
+<img class='adjust03' src={{jpgPath[2]}} width="100" height="100">
+<img class='adjust04' src={{jpgPath[2]}} width="100" height="100">
+<img class='adjust05' src={{jpgPath[2]}} width="100" height="100">
+<img class='adjust06' src={{jpgPath[2]}} width="100" height="100">
+ //-->
+  <p><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></p>
+
+
+<div class="BasicInfo">
+  <p style="font-size:20px;font-style:italic"><strong>Patient Basic Info:</strong></p>
+ 
+  <p><strong>Patient ID:</strong></p>
+  <p>{{patientId}}</p>
+  <p><strong>Patient Name:</strong></p>
+  <p>{{patientName}}</p>
+  <p><strong>Risk Factor:</strong></p>
+  <p>{{patientHeight}}</p>
+  <p><strong>History:</strong></p>
+  <p>{{patientWeight}}</p>
+  <p><strong>Patient Gender:</strong></p>
+  <p>{{patientGender}}</p>
+  <p><strong>Patient Age:</strong></p>
+  <p>{{patientAge}}</p>
+  <p><strong>Patient Phone:</strong></p>
+  <p>{{patientPhone}}</p>
+  <p><strong>Patient Location:</strong></p>
+  <p>{{patientLocation}}</p>
+  <p><strong>GPS City Name:</strong></p>
+  <p>{{gpsLocation}}</p>
+ 
+</div>
+<div class="ForRef">
+  <p style="font-size:20px;font-style:italic"><strong>For reference:</strong></p>
+  <p><font color="red"> </front></p>
+  <p><font color="red">Do not make diagnosis entirely based on this result.</front></p>
+  <pre><font color="black">{{ contentresult }}</front></pre>
+</div>
+<div class="DoctorC">
+  <p style="font-size:20px;font-style:italic"><font color="red"><strong>Doctor Comments:</strong></p>
+  <pre><font color="black">{{ contentcomment }}</pre>
+    
+ <form action="/doctor_comment_submitted" method="post">
+  
+  <!--   <textarea name="comment" cols="50" rows="5"></textarea>   -->
+<p>-----------------------------------------</p>
+
+<textarea name = "patientId" style = "width:0px;height:0px;">{{patientId}}</textarea>
+<textarea name = "time_string" style = "width:0px;height:0px;">{{time_string}}</textarea>
+
+<p><font color="red">If the selection of "quality of Image" is "Not appreciate/Not Diagnostic",</p>
+<p><font color="red">Other options will also set to "Not appreciate/Not Diagnostic" at backend,</p>
+<p><font color="red">No matter what you select.</p>
+  <p><font color="black">Quality of Image:</p>
+  <select name = "qualityImage" >
+     <option value ="good">good</option>
+     <option value ="fair">fair</option>
+     <option value ="poor">poor</option>
+     <option value ="Not appreciate/Not Diagnostic">Not appreciate/Not Diagnostic</option>
+  </select>
+<p> </p>
+  <p>Impression:</p>
+  <select name = "impression" >
+     <option value ="Normal/Variation">Normal/variation</option>
+     <option value ="OSCC" >OSCC</option>
+     <option value ="Lichen Planus">Lichen Planus</option>
+     <option value ="Homogenous Leukoplakia">Homogenous Leukoplakia</option>
+     <option value ="Speckled Leukoplakia">Speckled Leukoplakia</option>
+     <option value ="Tobacco Pouch Keratosis">Tobacco Pouch Keratosis</option>
+     <option value ="Veruccous Leukoplakia">Veruccous Leukoplakia</option>
+     <option value ="OSMF">OSMF</option>
+     <option value ="Benign">Benign</option>
+     <option value ="Not appreciate/Not Diagnostic">Not appreciate/Not Diagnostic</option>
+     <option value ="Others" >Others</option>
+  </select>
+<p> </p>
+  <p>Autofluorescence:</p>
+  <select name = "autofl">
+     <option value ="normal">normal</option>
+     <option value ="loss">loss</option>
+     <option value ="gain">gain</option>
+     <option value ="Not appreciate/Not Diagnostic">Not appreciate/Not Diagnostic</option>
+  </select>
+<p> </p>
+  <p>OSCC/PreCancer Lesions:</p>
+  <select name = "cancerORnot">
+     <option value ="yes">yes</option>
+     <option value ="no">no</option>
+     <option value ="Not appreciate/Not Diagnostic">Not appreciate/Not Diagnostic</option>
+  </select>
+<p> </p>
+  <p>Biopsy advised:</p>
+  <select name = "biopsyORnot">
+     <option value ="yes">yes</option>
+     <option value ="no">no</option>
+     <option value ="Not appreciate/Not Diagnostic">Not appreciate/Not Diagnostic</option>
+  </select>
+<p> </p>
+<p>Other comment:</p>
+<textarea name="comment" cols="50" rows="5"></textarea> 
+  <button type="submit" class="btn btn-default">Submit</button>
+ </form>
+</div>
+    
+  <div id="map"></div>
+
+ <script>
+      function initMap() {
+        var latCoordi = {{ latCoordi|tojson }};
+        var lngCoordi = {{ lngCoordi|tojson }};
+        var location = {lat: 32, lng: -110};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10,
+          center: new google.maps.LatLng(latCoordi,lngCoordi),
+            mapTypeId: 'hybrid',
+        });
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(latCoordi,lngCoordi),
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0BiAzQL5j5xtZU5XBYawigpX4g32ctFg&callback=initMap">
+ </script>
+<script>
+    var a = {{ patientId|tojson }};
+   
+	//text = ""
+	text = '<a style="font-size:30px" href="/list_patient1/'+ a + '">' +'List of Instances:  '+ a + '</a><br>'
+text += '<a style="font-size:30px" href="/list_patient_back"> List of Patients</a><br>';
+text += '<a style="font-size:30px" href="https://log:out@ocsuaosc.online/"> Log Out</a><br>'
+    
+    document.getElementById("demo").innerHTML = text;
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script>
+function openModal() {
+  document.getElementById('myModal').style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById('myModal').style.display = "none";
+}
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  var captionText = document.getElementById("caption");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  captionText.innerHTML = dots[slideIndex-1].alt;
+}
+</script>
+</body>
+</html>

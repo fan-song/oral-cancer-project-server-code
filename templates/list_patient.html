@@ -1,0 +1,245 @@
+<html>
+<style>
+div.backlinks{
+	position:absolute;
+	top:10px;
+	right:10px;
+}
+ul.a{
+        
+
+list-style-type:circle;
+}
+
+ol.a{
+        
+
+list-style-type:circle;
+}
+div.list{
+	position:absolute;
+	top:160px;
+	left:36px;
+}
+div.report_dimapur{
+
+	position:absolute;
+	top:160px;
+	left:300px;
+}
+div.report_kle{
+
+	position:absolute;
+	top:160px;
+	left:400px;
+}
+div.report_mscc{
+
+	position:absolute;
+	top:160px;
+	left:500px;
+}
+div.report_uci{
+
+	position:absolute;
+	top:160px;
+	left:600px;
+}
+div.report_other{
+
+	position:absolute;
+	top:160px;
+	left:900px;
+}
+div.delete{
+	position:absolute;
+	top:100px;
+	left:1200px;
+}
+</style>
+<body>
+  {% if message %}
+  <p style="color:red">{{ message }}</p>
+  {% endif %}
+
+<h1 style="font-family:verdana">List of the Patient ID:</h1>
+
+<div class="backlinks">    
+<a style="font-size:30px" href="/list_patient_back"> Refresh this Page</a><br>
+<a style="font-size:30px" href="/check_statistics"> Check Statistics</a><br>
+<a style="font-size:30px" href="https://log:out@ocsuaosc.online/"> Log Out</a>
+</div>
+
+<p>Click to select... ...</p>
+<p style="font-size:30px">Diagnose pending: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Review report:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total: {{number_report}}</p>
+
+<div class="list">    
+<ul class="a" style= "color:red" id = "demo"></ul>
+</div>
+<div class="report_dimapur"> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dimapur:</p>   
+<ul class="a" style= "color:red" id = "demo1"></ul>
+</div>
+<div class="report_kle">   
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KLE:</p>    
+<ul class="a" style= "color:red" id = "demo12"></ul>
+</div>
+<div class="report_mscc">    
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MSCC:</p>   
+<ul class="a" style= "color:red" id = "demo13"></ul>
+</div>
+<div class="report_uci">  
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UCI:</p>     
+<ul class="a" style= "color:red" id = "demo15"></ul>
+</div>
+<div class="report_other"> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INDIA:</p>      
+<ul class="a" style= "color:red" id = "demo16"></ul>
+</div>
+<div class="delete">    
+<ul class="a" style= "color:red" id = "demo2"></ul>
+</div>
+<script>
+    var a = {{ dirs|tojson }};
+    var b = {{ dirs_dimapur|tojson }};
+    var c = {{ dirs_kle|tojson }};
+    var d = {{ dirs_mscc|tojson }};
+    var e = {{ dirs_uci|tojson }};
+    var f = {{ dirs_other|tojson }};
+    text = "";
+    var i;
+    for ( i = 0; i < a.length; i++){
+        //text +="<li>"+ a[i] + "</li>";
+	var x = a[i];
+	text += '<a href="/list_patient1/'+ x + '">' + x + '</a><br>'
+    }
+    document.getElementById("demo").innerHTML = text;
+
+    text1 = "";
+    var i;
+	var space =".";
+    for ( i = 0; i < b.length; i++){
+        //text +="<li>"+ a[i] + "</li>";
+	var x = a[i];
+        var y = b[i];
+	text1 += '<a href="static/patientInfo/'+ y + '/report.pdf">'+y+'</a><br>'
+    }
+    document.getElementById("demo1").innerHTML = text1;
+
+    text12 = "";
+    var i;
+	var space =".";
+    for ( i = 0; i < c.length; i++){
+        //text +="<li>"+ a[i] + "</li>";
+	var x = a[i];
+        var y = c[i];
+	text12 += '<a href="static/patientInfo/'+ y + '/report.pdf">'+y+'</a><br>'
+    }
+    document.getElementById("demo12").innerHTML = text12;
+   
+text13 = "";
+    var i;
+	var space =".";
+    for ( i = 0; i < d.length; i++){
+        //text +="<li>"+ a[i] + "</li>";
+	var x = a[i];
+        var y = d[i];
+	text13 += '<a href="static/patientInfo/'+ y + '/report.pdf">'+y+'</a><br>'
+    }
+    document.getElementById("demo13").innerHTML = text13;
+
+text15 = "";
+    var i;
+	var space =".";
+    for ( i = 0; i < e.length; i++){
+        //text +="<li>"+ a[i] + "</li>";
+	var x = a[i];
+        var y = e[i];
+	text15 += '<a href="static/patientInfo/'+ y + '/report.pdf">'+y+'</a><br>'
+    }
+    document.getElementById("demo15").innerHTML = text15;
+
+text16 = "";
+    var i;
+	var space =".";
+    for ( i = 0; i < f.length; i++){
+        //text +="<li>"+ a[i] + "</li>";
+	var x = a[i];
+        var y = f[i];
+	text16 += '<a href="static/patientInfo/'+ y + '/report.pdf">'+y+'</a><br>'
+    }
+    document.getElementById("demo16").innerHTML = text16;
+
+    text2 = "";
+/*
+    var i;
+    for ( i = 0; i < a.length; i++){
+        //text +="<li>"+ a[i] + "</li>";
+	var x = a[i];
+	text2 += '<a href="/list_patient_delete/'+ x + '" onclick="if(!confirm(\'ALL Patient DATA will be delete permanenetly. \\nAre you sure???\\nDangerous Operation!!!\')) return false;">delete</a><br>'
+    }
+*/
+    document.getElementById("demo2").innerHTML = text2;
+
+    
+</script>
+
+<!--
+<div style="color:red" id = "demo1"></div>
+<script>
+    var a = {{ dirs|tojson }};
+    text = "";
+    var i;
+    for ( i = 0; i < a.length; i++){
+        text += a[i] + "<br>";
+        //text += "<a href="">" a[i] + "</a>"
+    }
+    document.getElementById("demo1").innerHTML = text;
+    
+</script>
+    //-->
+<!--    
+<p style="color:red">{{dirs[0]}}</p>
+<p style="color:red">{{dirs[1]}}</p>
+<p style="color:red">{{dirs[2]}}</p>
+<p style="color:red">{{dirs[3]}}</p>
+<p style="color:red">{{dirs[4]}}</p>
+<p style="color:red">{{dirs[5]}}</p>
+<p style="color:red">{{dirs[6]}}</p>
+<p style="color:red">{{dirs[7]}}</p>
+<p style="color:red">{{dirs[8]}}</p>
+<p style="color:red">{{dirs[9]}}</p>
+<p style="color:red">{{dirs[10]}}</p>
+<p style="color:red">{{dirs[11]}}</p>
+<p style="color:red">{{dirs[12]}}</p>
+<p style="color:red">{{dirs[13]}}</p>
+<p style="color:red">{{dirs[14]}}</p>
+<p style="color:red">{{dirs[15]}}</p>
+<p style="color:red">{{dirs[16]}}</p>
+<p style="color:red">{{dirs[17]}}</p>
+<p style="color:red">{{dirs[18]}}</p>
+<p style="color:red">{{dirs[19]}}</p>
+<p style="color:red">{{dirs[20]}}</p>
+<p style="color:red">{{dirs[21]}}</p>
+<p style="color:red">{{dirs[22]}}</p>
+<p style="color:red">{{dirs[23]}}</p>
+<p style="color:red">{{dirs[24]}}</p>
+<p style="color:red">{{dirs[25]}}</p>
+<p style="color:red">{{dirs[26]}}</p>
+<p style="color:red">{{dirs[27]}}</p>
+<p style="color:red">{{dirs[28]}}</p>
+<p style="color:red">{{dirs[29]}}</p>
+<p style="color:red">{{dirs[30]}}</p>
+
+
+ 
+<p>Input Listed Patient ID to View the Patient Data:</p>
+<p style="color:red">example: az001</p>
+ <form action="/list_patient" method="post">
+   Input Patient ID: <input type="text" name="patientId"><br>
+  <button type="submit" class="btn btn-default">Submit</button>
+ </form>
+ //-->
+</body>
+
+</html>
